@@ -9,7 +9,7 @@ import * as d3 from 'd3';
   styleUrls: ['./donut1.component.css']
 })
 export class Donut1Component implements OnInit {
-  @ViewChild('chartContainer') chartContainer: ElementRef<HTMLDivElement>;
+  @ViewChild('chartContainer') chartContainer: ElementRef;
 
   constructor() { }
 
@@ -43,6 +43,9 @@ export class Donut1Component implements OnInit {
         })
           .on('customMouseOut', function() {
           legend1.clearHighlight();
+        })
+        .on('customClick', (data)=>{
+          console.log(`Clicked: ${data.data.id}`);
         });
 
     legend1
