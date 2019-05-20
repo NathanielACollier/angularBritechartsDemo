@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import * as britecharts from 'britecharts/dist/bundled/britecharts.min';
 import * as d3 from 'd3';
@@ -9,7 +9,7 @@ import * as d3 from 'd3';
   styleUrls: ['./donut1.component.css']
 })
 export class Donut1Component implements OnInit {
-  @ViewChild('chartContainer') chartContainer: HTMLDivElement;
+  @ViewChild('chartContainer') chartContainer: ElementRef<HTMLDivElement>;
 
   constructor() { }
 
@@ -27,7 +27,7 @@ export class Donut1Component implements OnInit {
     };
 
 
-    const container = d3.select(this.chartContainer);
+    const container = d3.select(this.chartContainer.nativeElement);
 
     const donut1 = britecharts.donut();
     const legend1 = britecharts.legend();
