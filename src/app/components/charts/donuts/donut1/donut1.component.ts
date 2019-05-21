@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import * as britechartsAPI from '../../../../britecharts/api';
+import * as britechartsAPI from '../../../../britecharts';
 
 @Component({
   selector: 'app-donut1',
