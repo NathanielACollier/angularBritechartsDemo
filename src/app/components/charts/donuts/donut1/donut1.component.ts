@@ -9,6 +9,7 @@ import * as britechartsAPI from '../../../../britecharts/api';
 })
 export class Donut1Component implements OnInit {
   @ViewChild('chartContainer') chartContainer: ElementRef;
+  chart1: britechartsAPI.IDonutResult;
 
   constructor() { }
 
@@ -25,7 +26,7 @@ export class Donut1Component implements OnInit {
       ]
     };
 
-    britechartsAPI.donut({
+    this.chart1 = britechartsAPI.donut({
       element: this.chartContainer.nativeElement,
       data: donutData.data,
       onClick: (data)=>{
@@ -33,9 +34,13 @@ export class Donut1Component implements OnInit {
       }
     });
 
-    
+  }
 
-  
+  updateChartData(){
+    this.chart1.updateData([
+      {name:"Tuesday", id:7, quantity: 10},
+      {name: "Biscuit", id:8, quantity: 25}
+    ])
   }
 
 }

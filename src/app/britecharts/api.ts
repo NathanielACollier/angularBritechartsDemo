@@ -5,6 +5,8 @@ import * as d3 from 'd3';
 
 export interface IData{
     id: number;
+    name: string;
+    quantity: number;
 }
 
 export interface IDonutArguments{
@@ -52,7 +54,11 @@ export function donut(args: IDonutArguments): IDonutResult{
       .height(200)
       .numberFormat('s');
 
-    container.datum(args.data).call(donut1);
+    result.updateData = (data) => {
+        container.datum(data).call(donut1);
+    };
+
+    result.updateData(args.data); // make sure the chart gets displayed    
 
     return result;
 }
