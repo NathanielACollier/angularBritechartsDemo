@@ -9,6 +9,7 @@ export interface IData{
 
 export interface IDonutArguments{
     element: any,
+    data: IData[],
     onClick?: (data: {data: IData}) => void,
     onMouseOver?: (data: {data: IData}) => void,
     onMouseOut?: () => void
@@ -36,12 +37,14 @@ export function donut(args: IDonutArguments): IDonutResult{
         .internalRadius(200/5)
         .on('customMouseOver', function(data) {
           legend1.highlight(data.data.id);
+          args.onMouseOver(data);
         })
           .on('customMouseOut', function() {
           legend1.clearHighlight();
+          args.onMouseOut();
         })
         .on('customClick', (data)=>{
-          
+          args.onClick(data);
         });
 
     legend1
@@ -49,7 +52,7 @@ export function donut(args: IDonutArguments): IDonutResult{
       .height(200)
       .numberFormat('s');
 
-    container.datum(donutData.data).call(donut1);
+    container.datum(args.data).call(donut1);
 
     return result;
 }

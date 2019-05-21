@@ -27,6 +27,7 @@ export class Donut1Component implements OnInit {
 
     britechartsAPI.donut({
       element: this.chartContainer.nativeElement,
+      data: donutData.data,
       onClick: (data)=>{
         console.log(`Clicked: ${data.data.id}`);
       }
