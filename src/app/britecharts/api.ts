@@ -93,12 +93,15 @@ export function donut(args: IDonutArguments): IDonutResult{
       console.error(`Donut chart element has a height less than ${minimumChartHeight}`);
     }
 
+    let circleDiameter = selection.height > selection.width ? selection.width :
+                            selection.height;
+
     donut1.isAnimated(true)
         .highlightSliceById(2)
-        .width(selection.width)
-        .height(selection.height)
-        .externalRadius(selection.width/2.5)
-        .internalRadius(selection.width/5)
+        .width(circleDiameter)
+        .height(circleDiameter)
+        .externalRadius(circleDiameter/2.5)
+        .internalRadius(circleDiameter/5)
         .on('customMouseOver', function(data) {
           if( legend1 ){
             legend1.highlight(data.data.id);
