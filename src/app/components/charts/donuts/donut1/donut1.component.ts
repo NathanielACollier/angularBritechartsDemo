@@ -9,13 +9,14 @@ import * as britechartsAPI from '../../../../britecharts/api';
 })
 export class Donut1Component implements OnInit {
   @ViewChild('chartContainer') chartContainer: ElementRef;
+  @ViewChild('legendContainer') legendContainer: ElementRef;
   chart1: britechartsAPI.IDonutResult;
 
   constructor() { }
 
   ngOnInit() {
 
-    let chartData: britechartsAPI.IData[] = [
+    let chartData: britechartsAPI.IDonutData[] = [
       {name: "Shiny", id: 1, quantity: 86},
       {name: "Blazing", id: 2, quantity: 300},
       {name: "Dazzling", id: 3, quantity: 276},
@@ -26,6 +27,7 @@ export class Donut1Component implements OnInit {
 
     this.chart1 = britechartsAPI.donut({
       element: this.chartContainer.nativeElement,
+      legendElement: this.legendContainer.nativeElement,
       data: chartData,
       onClick: (data)=>{
         console.log(`Clicked: ${data.data.id}`);
