@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import * as britecharts from 'britecharts/dist/bundled/britecharts.min';
-import * as d3 from 'd3';
+import * as britechartsAPI from '../../../../britecharts/api';
 
 @Component({
   selector: 'app-donut1',
@@ -26,34 +25,16 @@ export class Donut1Component implements OnInit {
       ]
     };
 
+    britechartsAPI.donut({
+      element: this.chartContainer.nativeElement,
+      onClick: (data)=>{
+        console.log(`Clicked: ${data.data.id}`);
+      }
+    });
 
-    const container = d3.select(this.chartContainer.nativeElement);
+    
 
-    const donut1 = britecharts.donut();
-    const legend1 = britecharts.legend();
-
-    donut1.isAnimated(true)
-        .highlightSliceById(2)
-        .width(200)
-        .height(200)
-        .externalRadius(200/2.5)
-        .internalRadius(200/5)
-        .on('customMouseOver', function(data) {
-          legend1.highlight(data.data.id);
-        })
-          .on('customMouseOut', function() {
-          legend1.clearHighlight();
-        })
-        .on('customClick', (data)=>{
-          console.log(`Clicked: ${data.data.id}`);
-        });
-
-    legend1
-      .width(300)
-      .height(200)
-      .numberFormat('s');
-
-      container.datum(donutData.data).call(donut1);
+  
   }
 
 }
