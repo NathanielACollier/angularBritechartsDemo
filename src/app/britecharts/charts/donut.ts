@@ -1,19 +1,8 @@
 
 
 import * as britecharts from 'britecharts/dist/bundled/britecharts.min';
-import * as d3 from 'd3';
-
-const minimumChartHeight = 50;
-const minimumChartWidth = 50;
-
-// data schemas defined here: https://eventbrite.github.io/britecharts/global.html#BarChartData__anchor
-export interface IBarChartData{
-  value: number;
-  name: string;
-}
-
-
-
+import { d3Select } from '../d3Helper';
+import { minimumChartWidth, minimumChartHeight } from '../settings';
 
 
 export interface IDonutData{
@@ -35,24 +24,7 @@ export interface IDonutResult{
     updateData: (data: IDonutData[]) => void;
 }
 
-interface ID3SelectionResult{
-  container: any;
-  width: number;
-  height: number;
-}
 
-function d3Select(element: any): ID3SelectionResult{
-  const container = d3.select(element);
-  let rect = container.node() ? container.node().getBoundingClientRect() : null;
-  let width = rect ? rect.width : false;
-  let height = rect ? rect.height : false;
-  
-  return {
-    container: container,
-    width: width,
-    height: height
-  };
-}
 
 export function donut(args: IDonutArguments): IDonutResult{
 
