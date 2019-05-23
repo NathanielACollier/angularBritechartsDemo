@@ -15,8 +15,8 @@ export interface IDonutArguments{
     element: any,
     legendElement?: any,
     data: IDonutData[],
-    onClick?: (data: {data: IDonutData}) => void,
-    onMouseOver?: (data: {data: IDonutData}) => void,
+    onClick?: (data: IDonutData) => void,
+    onMouseOver?: (data: IDonutData) => void,
     onMouseOut?: () => void
 }
 
@@ -79,7 +79,7 @@ export function donut(args: IDonutArguments): IDonutResult{
             legend1.highlight(data.data.id);
           }
           if( args.onMouseOver){
-            args.onMouseOver(data);
+            args.onMouseOver(data.data);
           }
           
         })
@@ -94,7 +94,7 @@ export function donut(args: IDonutArguments): IDonutResult{
         })
         .on('customClick', (data)=>{
           if( args.onClick){
-            args.onClick(data);
+            args.onClick(data.data);
           }
           
         });

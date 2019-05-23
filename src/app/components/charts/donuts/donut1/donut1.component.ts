@@ -30,7 +30,7 @@ export class Donut1Component implements OnInit {
       legendElement: this.legendContainer.nativeElement,
       data: chartData,
       onClick: (data)=>{
-        console.log(`Clicked: ${data.data.id}`);
+        console.log(`Clicked: ${data.id}`);
       }
     });
 
