@@ -1,5 +1,5 @@
 
-import * as d3plus from "d3plus";
+import * as d3plus from "d3plus-treemap";
 
 export interface ITreemapData{
     value: number;
@@ -19,7 +19,21 @@ export interface ITreemapResult {
 export function treemap(args: ITreemapArguments): ITreemapResult{
     let result = <ITreemapResult>{};
 
-    
+    let chart1 = new d3plus.Treemap()
+    .data(args.data)
+    .groupBy("name")
+    .select(args.element)
+    .sum("value")
+    .render();
+/*
+    let viz = d3plus.Viz()
+    .select(args.element)
+    .data(args.data)  // data to use with the visualization
+    .type("tree_map")   // visualization type
+    .id("name")         // key for which our data is unique on
+    .size("value")      // sizing of blocks
+    .draw()             // finally, draw the visualization!
+*/
     result.updateData = (d)=> {
         
     };
